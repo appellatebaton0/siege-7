@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxeqhh6h3y3x4"]
+
+[ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
+
+[sub_resource type="Gradient" id="Gradient_sugp2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jyhfs"]
+gradient = SubResource("Gradient_sugp2")
+width = 4608
+height = 2592
+
+[sub_resource type="Gradient" id="Gradient_0wfyh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sugp2"]
+gradient = SubResource("Gradient_0wfyh")
+width = 256
+height = 256
+
+[node name="Main" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_jyhfs")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("1_o5qli")
+max_speed = 2000.0
+acceleration = 40.0
+rotation_acceleration = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = SubResource("GradientTexture2D_sugp2")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+zoom = Vector2(0.25, 0.25)
+script = ExtResource("2_0wfyh")
+player = NodePath("../Player")
