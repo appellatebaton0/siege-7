@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=19 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://cbcfhipgni0wp" path="res://scripts/planet.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://b3fnuhhpqy63i" path="res://scripts/menu_button.gd" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bpc6htgewgatx" path="res://scenes/planet_entry.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://cueelmux5u415" path="res://scripts/tray.gd" id="5_tefeu"]
 
 [sub_resource type="Gradient" id="Gradient_sugp2"]
 
@@ -54,7 +55,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/1/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,7 +71,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/0/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +98,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/0/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -219,11 +220,12 @@ focus_mode = 0
 script = ExtResource("4_jyhfs")
 animator = NodePath("../../../AnimationPlayer")
 
-[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer"]
+[node name="Tray" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("5_tefeu")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Control"]
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -234,7 +236,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,138 +248,138 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Planets" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer"]
+[node name="Planets" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+[node name="Title" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
 text = "Planet Collection"
 horizontal_alignment = 1
 
-[node name="ElementContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+[node name="ElementContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer2"]
+[node name="Money" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Money: 0"
 
-[node name="PanelContainer7" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+[node name="PanelContainer7" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer7"]
+[node name="Hydrogen" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer7"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hydrogen: 0"
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Helium" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Helium: 0"
+
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Oxygen" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Oxygen: 0"
+
+[node name="PanelContainer5" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Carbon" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer5"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Carbon: 0"
 
-[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+[node name="PanelContainer6" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer3"]
+[node name="Neon" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer6"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Carbon: 0"
+text = "Neon: 0"
 
-[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer4"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Carbon: 0"
-
-[node name="PanelContainer5" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer5"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Carbon: 0"
-
-[node name="PanelContainer6" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer6"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Carbon: 0"
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlanetContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer"]
+[node name="PlanetContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
+[node name="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
 layout_mode = 2
 
-[node name="Panel3" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
+[node name="Panel3" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
 layout_mode = 2
 
-[node name="Panel2" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
+[node name="Panel2" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Shop" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer"]
+[node name="Shop" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Shop"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ShopContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="ShopContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer/ShopContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer/ShopContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
