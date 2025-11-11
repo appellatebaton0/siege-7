@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=18 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://cbcfhipgni0wp" path="res://scripts/planet.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://b3fnuhhpqy63i" path="res://scripts/menu_button.gd" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bpc6htgewgatx" path="res://scenes/planet_entry.tscn" id="5_tbgi4"]
 
 [sub_resource type="Gradient" id="Gradient_sugp2"]
 
@@ -264,20 +265,20 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Carbon: 0"
-
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Money: 0"
+
+[node name="PanelContainer7" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer7"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Carbon: 0"
@@ -330,10 +331,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
-custom_minimum_size = Vector2(0, 250)
+[node name="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
 layout_mode = 2
-size_flags_vertical = 2
+
+[node name="Panel3" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
+layout_mode = 2
+
+[node name="Panel2" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Shop" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
