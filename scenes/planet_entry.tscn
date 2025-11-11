@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpc6htgewgatx"]
+
+[sub_resource type="Gradient" id="Gradient_iur6e"]
+offsets = PackedFloat32Array(0.5, 0.5)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ai2uk"]
+gradient = SubResource("Gradient_iur6e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(-0.25, -0.14)
+
+[node name="Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(813, 200)
+size_flags_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PlanetInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer/PlanetInfo"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_ai2uk")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/PlanetInfo"]
+layout_mode = 2
+text = "Planet Name"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Contains"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Element" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Carbon"
+
+[node name="Element2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Carbon"
+
+[node name="Element3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Carbon"
+
+[node name="Element4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Carbon"
+
+[node name="Element5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Carbon"
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Destroy
++ Materials"
+
+[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sell
++ Currency"
