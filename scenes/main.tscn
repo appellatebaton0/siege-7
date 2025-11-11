@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=13 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
@@ -12,14 +12,12 @@ width = 4608
 height = 2592
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(256, 256)
+size = Vector2(64, 64)
 
 [sub_resource type="Gradient" id="Gradient_0wfyh"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sugp2"]
 gradient = SubResource("Gradient_0wfyh")
-width = 256
-height = 256
 
 [sub_resource type="Gradient" id="Gradient_jyhfs"]
 offsets = PackedFloat32Array(0.5, 0.5)
@@ -27,14 +25,16 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tbgi4"]
 gradient = SubResource("Gradient_jyhfs")
-width = 2048
-height = 2048
+width = 512
+height = 512
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
-radius = 727.9
+radius = 181.98
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
 
 [node name="Main" type="Node"]
 
@@ -46,8 +46,9 @@ collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_o5qli")
-max_speed = 2000.0
-acceleration = 40.0
+max_speed = 500.0
+acceleration = 15.0
+friction = 3.0
 rotation_acceleration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -55,6 +56,9 @@ shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = SubResource("GradientTexture2D_sugp2")
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+target_position = Vector2(1500, 0)
 
 [node name="Planet" type="CharacterBody2D" parent="."]
 position = Vector2(1695, -586)
@@ -85,7 +89,6 @@ texture = SubResource("GradientTexture2D_tbgi4")
 shape = SubResource("CircleShape2D_jyhfs")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
-zoom = Vector2(0.25, 0.25)
 script = ExtResource("2_0wfyh")
 player = NodePath("../Player")
 
@@ -98,3 +101,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/UI/HUD"]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+
+[node name="MenuButton2" type="MenuButton" parent="CanvasLayer/UI/HUD"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_sugp2")
+text = "nkjn"
+item_count = 1
+popup/item_0/text = "nmbkjb"
+popup/item_0/id = 0
+
+[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer/UI/HUD/MenuButton2"]
+oversampling_override = 1.0
