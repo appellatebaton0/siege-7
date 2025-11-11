@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=17 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://cbcfhipgni0wp" path="res://scripts/planet.gd" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://b3fnuhhpqy63i" path="res://scripts/menu_button.gd" id="4_jyhfs"]
 
 [sub_resource type="Gradient" id="Gradient_sugp2"]
 
@@ -34,14 +35,104 @@ fill_to = Vector2(0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
 radius = 181.98
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+[sub_resource type="Animation" id="Animation_jyhfs"]
+resource_name = "open_menu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -652), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "close_menu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -652)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/HBoxContainer/Control/Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
+_data = {
+&"RESET": SubResource("Animation_tefeu"),
+&"close_menu": SubResource("Animation_tbgi4"),
+&"open_menu": SubResource("Animation_jyhfs")
+}
 
 [node name="Main" type="Node"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="World" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="World"]
 texture = SubResource("GradientTexture2D_jyhfs")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="World"]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
@@ -51,44 +142,44 @@ acceleration = 15.0
 friction = 3.0
 rotation_acceleration = 0.1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Player"]
 shape = SubResource("RectangleShape2D_sugp2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Player"]
 texture = SubResource("GradientTexture2D_sugp2")
 
-[node name="RayCast2D" type="RayCast2D" parent="Player"]
+[node name="RayCast2D" type="RayCast2D" parent="World/Player"]
 target_position = Vector2(1500, 0)
 
-[node name="Planet" type="CharacterBody2D" parent="."]
+[node name="Planet" type="CharacterBody2D" parent="World"]
 position = Vector2(1695, -586)
 collision_mask = 4
 script = ExtResource("2_sugp2")
 
-[node name="LockPoint" type="Node2D" parent="Planet"]
+[node name="LockPoint" type="Node2D" parent="World/Planet"]
 position = Vector2(-810, 737)
 
-[node name="Sprite2D" type="Sprite2D" parent="Planet"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Planet"]
 texture = SubResource("GradientTexture2D_tbgi4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Planet"]
 shape = SubResource("CircleShape2D_jyhfs")
 
-[node name="Planet2" type="CharacterBody2D" parent="."]
+[node name="Planet2" type="CharacterBody2D" parent="World"]
 position = Vector2(-139, -1490)
 collision_mask = 4
 script = ExtResource("2_sugp2")
 
-[node name="LockPoint" type="Node2D" parent="Planet2"]
+[node name="LockPoint" type="Node2D" parent="World/Planet2"]
 position = Vector2(2210, 2695)
 
-[node name="Sprite2D" type="Sprite2D" parent="Planet2"]
+[node name="Sprite2D" type="Sprite2D" parent="World/Planet2"]
 texture = SubResource("GradientTexture2D_tbgi4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Planet2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Planet2"]
 shape = SubResource("CircleShape2D_jyhfs")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Camera2D" type="Camera2D" parent="World" node_paths=PackedStringArray("player")]
 script = ExtResource("2_0wfyh")
 player = NodePath("../Player")
 
@@ -114,24 +205,183 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/UI/HUD"]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TrayButton" type="Button" parent="CanvasLayer/UI/HUD/HBoxContainer" node_paths=PackedStringArray("animator")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 focus_mode = 0
+script = ExtResource("4_jyhfs")
+animator = NodePath("../../../AnimationPlayer")
 
-[node name="MenuButton2" type="MenuButton" parent="CanvasLayer/UI/HUD"]
-custom_minimum_size = Vector2(40, 40)
+[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_sugp2")
-text = "nkjn"
-item_count = 1
-popup/item_0/text = "nmbkjb"
-popup/item_0/id = 0
+size_flags_horizontal = 3
 
-[node name="PopupMenu" type="PopupMenu" parent="CanvasLayer/UI/HUD/MenuButton2"]
-oversampling_override = 1.0
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Planets" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Planet Collection"
+horizontal_alignment = 1
+
+[node name="ElementContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="PanelContainer5" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="PanelContainer6" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer6"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carbon: 0"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlanetContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Shop" type="PanelContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShopContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/HUD/HBoxContainer/Control/Panel/MarginContainer/HBoxContainer/Shop/MarginContainer/VBoxContainer/ScrollContainer/ShopContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="InputStopper" type="Control" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI"]
+libraries = {
+&"": SubResource("AnimationLibrary_tefeu")
+}
