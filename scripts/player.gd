@@ -8,12 +8,14 @@ var speed := 0.0
 @export var max_rotation_speed := 2.0
 @export var rotation_acceleration := 0.5
 var rotation_speed = 0.0
+@export var rotation_friction := 0.025
 
 func control(delta: float) -> void:
+	
+	# Forwards movement.
 	var direction = Input.get_axis("Brake", "Boost")
 	
 	if direction != 0:
-		print("0")
 		direction = max(0, direction)
 		speed = move_toward(speed, direction * max_speed, delta * acceleration * 60)
 	else:
@@ -21,15 +23,17 @@ func control(delta: float) -> void:
 	
 	velocity = Vector2(speed, 0).rotated(rotation)
 	
+	# Rotational movement.
 	var rotation_direction = Input.get_axis("Left", "Right")
 	
-	rotation_speed = move_toward(rotation_speed, rotation_direction * max_rotation_speed, delta * rotation_acceleration * 60)
+	if rotation_direction:
+		rotation_speed = move_toward(rotation_speed, rotation_direction * max_rotation_speed, delta * rotation_acceleration * 60)
+	else:
+		rotation_speed = move_toward(rotation_speed, 0, delta * rotation_friction * 60)
 	
 	rotate(deg_to_rad(rotation_speed))
-	
-	
-	pass
-	
+
+
 func _physics_process(delta: float) -> void:
 	control(delta)
 	

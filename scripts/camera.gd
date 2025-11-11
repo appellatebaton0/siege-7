@@ -9,5 +9,5 @@ class_name Camera extends Camera2D
 func get_goal_position() -> Vector2:
 	return player.global_position + (player.velocity / velocity_divider)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	global_position = lerp(global_position, get_goal_position(), lerp_amount)
