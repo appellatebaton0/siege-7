@@ -3,7 +3,7 @@ extends Node
 @warning_ignore("unused_signal") 
 signal updated_contents
 
-var money := 500
+var money := 0
 
 var hydrogen := 0
 var helium := 0

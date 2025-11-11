@@ -5,8 +5,8 @@ class_name PlanetEntry extends PanelContainer
 @onready var icon := $MarginContainer/HBoxContainer/PlanetInfo/Icon
 @onready var label := $MarginContainer/HBoxContainer/PlanetInfo/Name
 
-@onready var sell := $MarginContainer/HBoxContainer/Options/Button2
-@onready var sell_text = $MarginContainer/HBoxContainer/Options/Button2.text
+@onready var sell := $MarginContainer/HBoxContainer/Options/Sell
+@onready var sell_text = $MarginContainer/HBoxContainer/Options/Sell.text
 
 @onready var elements:Dictionary[String, Label]= {
 	"hydrogen": $MarginContainer/HBoxContainer/VBoxContainer/Hydrogen,
@@ -26,3 +26,11 @@ func update_data():
 
 func _ready() -> void:
 	update_data()
+
+
+func _on_sell_pressed() -> void:
+	Global.change_contents("money", data.worth)
+	$AnimationPlayer.play("free")
+
+func _on_animation_finished(_val) -> void:
+	queue_free()
