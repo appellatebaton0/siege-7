@@ -2,6 +2,8 @@ class_name PlanetData extends Resource
 
 @export var name := "Planet"
 
+@export var texture:Texture2D
+
 @export var worth := 0
 
 @export_group("Elements")
