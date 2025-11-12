@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=20 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
 [ext_resource type="Script" uid="uid://cbcfhipgni0wp" path="res://scripts/planet.gd" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://lfh1f0io7qh2" path="res://scripts/planet_data.gd" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://b3fnuhhpqy63i" path="res://scripts/menu_button.gd" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://bpc6htgewgatx" path="res://scenes/planet_entry.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://cueelmux5u415" path="res://scripts/tray.gd" id="5_tefeu"]
 
 [sub_resource type="Gradient" id="Gradient_sugp2"]
@@ -24,7 +24,7 @@ gradient = SubResource("Gradient_0wfyh")
 
 [sub_resource type="Gradient" id="Gradient_jyhfs"]
 offsets = PackedFloat32Array(0.5, 0.5)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+colors = PackedColorArray(1, 0.43529412, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tbgi4"]
 gradient = SubResource("Gradient_jyhfs")
@@ -34,35 +34,46 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 1)
 
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("3_o6xl0")
+name = "TestPlanet"
+texture = SubResource("GradientTexture2D_tbgi4")
+worth = 20
+hydrogen = 20
+helium = 25
+oxygen = 25
+carbon = 10
+neon = 3
+metadata/_custom_type_script = "uid://lfh1f0io7qh2"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
 radius = 181.98
 
-[sub_resource type="Animation" id="Animation_jyhfs"]
-resource_name = "open_menu"
-length = 0.5
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
-tracks/1/interp = 2
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -652), Vector2(0, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
@@ -93,31 +104,32 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_tefeu"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_jyhfs"]
+resource_name = "open_menu"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
+tracks/0/path = NodePath("InputStopper:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -648)]
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("InputStopper:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("HUD/HBoxContainer/Tray/Panel:position")
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -652), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
@@ -134,7 +146,7 @@ _data = {
 [node name="Sprite2D" type="Sprite2D" parent="World"]
 texture = SubResource("GradientTexture2D_jyhfs")
 
-[node name="Player" type="CharacterBody2D" parent="World"]
+[node name="Player" type="CharacterBody2D" parent="World" groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 motion_mode = 1
@@ -153,10 +165,18 @@ texture = SubResource("GradientTexture2D_sugp2")
 [node name="RayCast2D" type="RayCast2D" parent="World/Player"]
 target_position = Vector2(1500, 0)
 
+[node name="Area2D" type="Area2D" parent="World/Player"]
+position = Vector2(37, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="World/Player/Area2D"]
+polygon = PackedVector2Array(0, -21, 5, -84, 5, 84, 0, 21)
+
 [node name="Planet" type="CharacterBody2D" parent="World"]
-position = Vector2(1695, -586)
+position = Vector2(1696, -586)
 collision_mask = 4
 script = ExtResource("2_sugp2")
+data = SubResource("Resource_tipki")
 
 [node name="LockPoint" type="Node2D" parent="World/Planet"]
 position = Vector2(-810, 737)
@@ -165,20 +185,6 @@ position = Vector2(-810, 737)
 texture = SubResource("GradientTexture2D_tbgi4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Planet"]
-shape = SubResource("CircleShape2D_jyhfs")
-
-[node name="Planet2" type="CharacterBody2D" parent="World"]
-position = Vector2(-139, -1490)
-collision_mask = 4
-script = ExtResource("2_sugp2")
-
-[node name="LockPoint" type="Node2D" parent="World/Planet2"]
-position = Vector2(2210, 2695)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Planet2"]
-texture = SubResource("GradientTexture2D_tbgi4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Planet2"]
 shape = SubResource("CircleShape2D_jyhfs")
 
 [node name="Camera2D" type="Camera2D" parent="World" node_paths=PackedStringArray("player")]
@@ -220,7 +226,7 @@ focus_mode = 0
 script = ExtResource("4_jyhfs")
 animator = NodePath("../../../AnimationPlayer")
 
-[node name="Tray" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer"]
+[node name="Tray" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer" groups=["Tray"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("5_tefeu")
@@ -333,14 +339,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
-layout_mode = 2
-
-[node name="Panel3" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
-layout_mode = 2
-
-[node name="Panel2" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("5_tbgi4")]
-layout_mode = 2
+[node name="EntrySlot" type="Node" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
 
 [node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
 layout_mode = 2

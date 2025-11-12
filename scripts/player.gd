@@ -10,6 +10,10 @@ var speed := 0.0
 var rotation_speed = 0.0
 @export var rotation_friction := 0.025
 
+@onready var ray:RayCast2D = $RayCast2D
+@onready var collector:Area2D = $Area2D
+@onready var tray:Tray = get_tree().get_first_node_in_group("Tray")
+
 func control(delta: float) -> void:
 	
 	# Forwards movement.
@@ -36,5 +40,14 @@ func control(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	control(delta)
+	
+	var hit_planet:Planet = ray.get_collider()
+	if Input.is_action_pressed("TractorBeam") and hit_planet != null:
+		hit_planet.in_tractor_beam = true
+		hit_planet.player = self
+		
+		if collector.get_overlapping_bodies().has(hit_planet):
+			tray.add_planet_entry(hit_planet.data)
+			hit_planet.queue_free()
 	
 	move_and_slide()

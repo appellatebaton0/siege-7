@@ -9,6 +9,17 @@ class_name Tray extends Control
 	"neon": {"goal":0, "value": 0, "node": $Panel/MarginContainer/HBoxContainer/Planets/ElementContainer/PanelContainer6/Neon},
 }
 
+@onready var entry_slot:Node = $Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer/EntrySlot
+var entry_scene:PackedScene = load("res://scenes/planet_entry.tscn")
+func add_planet_entry(data:PlanetData):
+	var new:PlanetEntry = entry_scene.instantiate()
+	
+	new.data = data
+	pri
+	
+	entry_slot.add_sibling(new)
+	
+
 func _ready() -> void:
 	Global.updated_contents.connect(_on_updated_contents)
 	_on_updated_contents()

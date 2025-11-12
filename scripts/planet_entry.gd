@@ -23,6 +23,7 @@ func update_data():
 		elements[element].text = str(data.get(element)) + " " + element.capitalize()
 	
 	sell.text = sell_text.replace("0", str(data.worth))
+	label.text = data.name
 
 func _ready() -> void:
 	update_data()
