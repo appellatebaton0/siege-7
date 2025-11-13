@@ -33,8 +33,7 @@ func _on_buy_pressed() -> void:
 	
 	for element in data.cost.keys():
 		if Global.get(element) < data.cost[element]:
-			print(element, " failed: ", Global.get(element), " < ", data.cost[element])
-			return
+			return # IF POOR, FAIL.
 	
 	upgrade.upgrade()
 	

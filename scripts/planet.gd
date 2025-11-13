@@ -15,6 +15,7 @@ func get_lock_point() -> Vector2:
 	return $LockPoint.global_position
 
 func _ready() -> void:
+	data.make_random()
 	$Sprite2D.texture = data.texture
 
 func _physics_process(delta: float) -> void:
