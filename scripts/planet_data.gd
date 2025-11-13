@@ -13,7 +13,13 @@ class_name PlanetData extends Resource
 @export var carbon := 0
 @export var neon := 0
 
-
+var _TEXTURE_OPTIONS = [
+	load("res://assets/textures/planet1.png"),
+	load("res://assets/textures/planet2.png"),
+	load("res://assets/textures/planet3.png"),
+	load("res://assets/textures/planet4.png"),
+	load("res://assets/textures/planet5.png")
+]
 func make_random():
 	
 	var elements := ["hydrogen", "helium", "oxygen", "carbon", "neon"]
@@ -24,6 +30,8 @@ func make_random():
 	for i in range(15):
 		var target = elements.pick_random()
 		set(target, get(target) + 1)
+	
+	texture = _TEXTURE_OPTIONS.pick_random()
 	
 	worth = randi_range(15, 54)
 	
