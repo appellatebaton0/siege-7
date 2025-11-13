@@ -32,6 +32,14 @@ func _ready() -> void:
 func _on_sell_pressed() -> void:
 	Global.change_contents("money", data.worth)
 	$AnimationPlayer.play("free")
+func _on_break_down_pressed() -> void:
+	
+	for element in elements.keys():
+		Global.change_contents(element, data.get(element))
+	
+	$AnimationPlayer.play("free")
+
+
 
 func _on_animation_finished(_val) -> void:
 	queue_free()

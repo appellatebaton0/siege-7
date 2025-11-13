@@ -15,7 +15,6 @@ func add_planet_entry(data:PlanetData):
 	var new:PlanetEntry = entry_scene.instantiate()
 	
 	new.data = data
-	pri
 	
 	entry_slot.add_sibling(new)
 	
