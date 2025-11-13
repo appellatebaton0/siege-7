@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://gtvxuyvoe0vt"]
+
+[ext_resource type="FontFile" uid="uid://gping46owoha" path="res://assets/fonts/SpaceMono-Regular.ttf" id="1_yg8cf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyiyw"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 0.63529414)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[resource]
+Label/fonts/font = ExtResource("1_yg8cf")
+Panel/styles/panel = SubResource("StyleBoxFlat_yyiyw")

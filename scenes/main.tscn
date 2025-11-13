@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cxeqhh6h3y3x4"]
+[gd_scene load_steps=39 format=3 uid="uid://cxeqhh6h3y3x4"]
 
 [ext_resource type="Script" uid="uid://dt4w43fklbmmx" path="res://scripts/player.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://cls3yti8p1cky" path="res://scripts/camera.gd" id="2_0wfyh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://k03qnwxw1uym" path="res://scripts/shop_entry.gd" id="7_o6xl0"]
 [ext_resource type="Script" uid="uid://dk5wlnowigdig" path="res://scripts/shop_data.gd" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://bpc6htgewgatx" path="res://scenes/planet_entry.tscn" id="8_ya4ey"]
+[ext_resource type="Theme" uid="uid://gtvxuyvoe0vt" path="res://assets/themes/help.tres" id="11_ya4ey"]
 
 [sub_resource type="Gradient" id="Gradient_sugp2"]
 
@@ -113,6 +114,53 @@ func upgrade():
 	player.max_speed += 15
 "
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ya4ey"]
+color = Color(0.22851065, 0.22851089, 0.22851074, 1)
+grow_begin = 0.0
+grow_end = -70.0
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+bg_color = Color(0.19607843, 0.84313726, 0.99215686, 0.53333336)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.25065687, 0.38803336, 0.70124674, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8y0u"]
+bg_color = Color(0.19607843, 0.84313726, 0.99215686, 0.53333336)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.25065687, 0.38803336, 0.70124674, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkv2x"]
+bg_color = Color(0.19607843, 0.84313726, 0.99215686, 0.53333336)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.25065687, 0.38803336, 0.70124674, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="Theme" id="Theme_jbj1t"]
+Button/styles/hover = SubResource("StyleBoxFlat_trceg")
+Button/styles/normal = SubResource("StyleBoxFlat_a8y0u")
+Button/styles/pressed = SubResource("StyleBoxFlat_jkv2x")
+
 [sub_resource type="Animation" id="Animation_tefeu"]
 length = 0.001
 tracks/0/type = "value"
@@ -138,6 +186,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUD/HBoxContainer2/Control/Panel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
 }
 
 [sub_resource type="Animation" id="Animation_tbgi4"]
@@ -196,10 +256,68 @@ tracks/1/keys = {
 "values": [Vector2(0, -652), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_eb6dy"]
+resource_name = "open_help"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InputStopper:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/HBoxContainer2/Control/Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_trceg"]
+resource_name = "close_help"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/HBoxContainer2/Control/Panel:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InputStopper:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tefeu"]
 _data = {
 &"RESET": SubResource("Animation_tefeu"),
+&"close_help": SubResource("Animation_trceg"),
 &"close_menu": SubResource("Animation_tbgi4"),
+&"open_help": SubResource("Animation_eb6dy"),
 &"open_menu": SubResource("Animation_jyhfs")
 }
 
@@ -299,6 +417,7 @@ animator = NodePath("../../../AnimationPlayer")
 [node name="Tray" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer" groups=["Tray"]]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 script = ExtResource("5_tefeu")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray"]
@@ -415,6 +534,7 @@ size_flags_vertical = 3
 
 [node name="PlanetEntry" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer" instance=ExtResource("8_ya4ey")]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer/Tray/Panel/MarginContainer/HBoxContainer/Planets/ScrollContainer/PlanetContainer"]
 layout_mode = 2
@@ -491,6 +611,137 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "BUY"
+
+[node name="Control2" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/HUD"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("5_choun")
+theme_override_constants/separation = 15
+
+[node name="Control2" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/UI/HUD/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_ya4ey")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Gathering Resources"
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Spending Resources"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ya4ey")
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxLine_ya4ey")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Navigate space using W/UP to go forwards, L/R or A/D to turn left and right, and S/DOWN to brake.
+
+While facing a planet that's in range, hold down Q to tractor beam it until it disappears into your inventory."
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/UI/HUD/HBoxContainer2/Control/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "You can spend resources in the Menu tab in the top left.
+
+After colllecting a planet, you can choose to either break it down into its base elements, or sell it for money via the main list in the menu.
+
+You can buy upgrades to your ship through the shop options on the far right of the menu. "
+autowrap_mode = 2
+
+[node name="TrayButton" type="Button" parent="CanvasLayer/UI/HUD/HBoxContainer2" node_paths=PackedStringArray("animator")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+focus_mode = 0
+theme = SubResource("Theme_jbj1t")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+toggle_mode = true
+text = "?"
+script = ExtResource("4_jyhfs")
+animator = NodePath("../../../AnimationPlayer")
+anim = "open_help"
+unanim = "close_help"
+s = ["?", "X"]
 
 [node name="InputStopper" type="Control" parent="CanvasLayer/UI"]
 visible = false
