@@ -2,18 +2,18 @@ class_name PlanetEntry extends PanelContainer
 
 @export var data:PlanetData
 
-@onready var icon := $MarginContainer/HBoxContainer/PlanetInfo/Icon
-@onready var label := $MarginContainer/HBoxContainer/PlanetInfo/Name
+@onready var icon := $MarginContainer/HBoxContainer/Icon
+@onready var label := $MarginContainer/HBoxContainer/VBoxContainer/Name
 
 @onready var sell := $MarginContainer/HBoxContainer/Options/Sell
 @onready var sell_text = $MarginContainer/HBoxContainer/Options/Sell.text
 
 @onready var elements:Dictionary[String, Label]= {
-	"hydrogen": $MarginContainer/HBoxContainer/VBoxContainer/Hydrogen,
-	"helium": $MarginContainer/HBoxContainer/VBoxContainer/Helium,
-	"oxygen": $MarginContainer/HBoxContainer/VBoxContainer/Oxygen,
-	"carbon": $MarginContainer/HBoxContainer/VBoxContainer/Carbon,
-	"neon": $MarginContainer/HBoxContainer/VBoxContainer/Neon
+	"hydrogen": $MarginContainer/HBoxContainer/VBoxContainer/GridContainer/Hydrogen,
+	"helium": $MarginContainer/HBoxContainer/VBoxContainer/GridContainer/Helium,
+	"oxygen": $MarginContainer/HBoxContainer/VBoxContainer/GridContainer/Oxygen,
+	"carbon": $MarginContainer/HBoxContainer/VBoxContainer/GridContainer/Carbon,
+	"neon": $MarginContainer/HBoxContainer/VBoxContainer/GridContainer/Neon
 }
 
 func update_data():

@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://luomwoo5xhhg"]
+
+[ext_resource type="FontFile" uid="uid://gping46owoha" path="res://assets/fonts/SpaceMono-Regular.ttf" id="1_3ctqr"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_orla2"]
+color = Color(0.16565639, 0.16565642, 0.16565639, 1)
+grow_begin = -9.0
+grow_end = -9.0
+thickness = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dho3l"]
+bg_color = Color(0.5129262, 0.51288044, 0.5566331, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.2199898, 0.21998838, 0.23359948, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkf6r"]
+bg_color = Color(0.21960784, 0.21960784, 0.24705882, 0.78431374)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3ctqr"]
+color = Color(0.59607846, 0.59607846, 0.6039216, 1)
+thickness = 6
+vertical = true
+
+[resource]
+HSeparator/styles/separator = SubResource("StyleBoxLine_orla2")
+Label/fonts/font = ExtResource("1_3ctqr")
+Panel/styles/panel = SubResource("StyleBoxFlat_dho3l")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vkf6r")
+VSeparator/styles/separator = SubResource("StyleBoxLine_3ctqr")

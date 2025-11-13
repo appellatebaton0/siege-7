@@ -8,6 +8,7 @@ var menu_toggle := false
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ToggleMenu"):
 		_pressed()
+	text = "X" if menu_toggle else "O"
 
 func _pressed() -> void:
 	if not animator.is_playing():
