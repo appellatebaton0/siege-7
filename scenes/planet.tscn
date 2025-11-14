@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx7g3t57yawql"]
+
+[ext_resource type="Script" uid="uid://cbcfhipgni0wp" path="res://scripts/planet.gd" id="1_ggt7d"]
+[ext_resource type="Script" uid="uid://lfh1f0io7qh2" path="res://scripts/planet_data.gd" id="2_0k1rn"]
+[ext_resource type="Texture2D" uid="uid://dw3gca6npj8i1" path="res://assets/textures/planet1.png" id="3_48b8c"]
+
+[sub_resource type="Resource" id="Resource_ggt7d"]
+script = ExtResource("2_0k1rn")
+texture = ExtResource("3_48b8c")
+metadata/_custom_type_script = "uid://lfh1f0io7qh2"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyhfs"]
+radius = 257.0953
+
+[node name="Planet" type="StaticBody2D" groups=["Planet"]]
+collision_mask = 0
+script = ExtResource("1_ggt7d")
+data = SubResource("Resource_ggt7d")
+
+[node name="LockPoint" type="Node2D" parent="."]
+position = Vector2(-810, 737)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_48b8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jyhfs")

@@ -1,7 +1,7 @@
 class_name ShopEntry extends PanelContainer
 
 @export var data:ShopData
-@export var upgrade:Node
+@export var upgrade:Upgrade
 
 @onready var PAY := $MarginContainer/VBoxContainer/PAY
 @onready var GET := $MarginContainer/VBoxContainer/GET
@@ -17,7 +17,7 @@ var symbols:Dictionary[String, String] = {
 
 func _ready() -> void:
 	for child in get_children():
-		if child.is_class("Node"):
+		if child is Upgrade:
 			upgrade = child
 			break
 	

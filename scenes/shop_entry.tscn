@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://btumic35bp6g6"]
+
+[ext_resource type="Script" uid="uid://k03qnwxw1uym" path="res://scripts/shop_entry.gd" id="1_61ify"]
+[ext_resource type="Script" uid="uid://dk5wlnowigdig" path="res://scripts/shop_data.gd" id="2_43uvd"]
+
+[sub_resource type="Resource" id="Resource_85g3d"]
+script = ExtResource("2_43uvd")
+metadata/_custom_type_script = "uid://dk5wlnowigdig"
+
+[node name="ShopEntry" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 150)
+script = ExtResource("1_61ify")
+data = SubResource("Resource_85g3d")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PAY" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PAY 100$, 10H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GET" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "GET +10 Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BUY" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BUY"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BUY" to="." method="_on_buy_pressed"]

@@ -20,20 +20,21 @@ var _TEXTURE_OPTIONS = [
 	load("res://assets/textures/planet4.png"),
 	load("res://assets/textures/planet5.png")
 ]
-func make_random():
+func make_random() -> PlanetData:
+	
+	var new:PlanetData = duplicate(true)
 	
 	var elements := ["hydrogen", "helium", "oxygen", "carbon", "neon"]
 	
 	for element in elements:
-		set(element, 0)
+		new.set(element, 0)
 	
 	for i in range(15):
 		var target = elements.pick_random()
-		set(target, get(target) + 1)
+		new.set(target, new.get(target) + 1)
 	
-	texture = _TEXTURE_OPTIONS.pick_random()
+	new.texture = _TEXTURE_OPTIONS.pick_random()
 	
-	worth = randi_range(15, 54)
+	new.worth = randi_range(15, 54)
 	
-	
-	pass
+	return new
